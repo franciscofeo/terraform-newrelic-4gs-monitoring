@@ -29,3 +29,10 @@ output "alerts_created" {
     }
   ]
 }
+
+output "dashboards_created" {
+  description = "Dashboards Created"
+  value = {
+    for k, v in newrelic_one_dashboard.fgs_dashboard : k => v.guid
+  }
+}
