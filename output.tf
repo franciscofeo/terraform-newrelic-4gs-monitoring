@@ -1,5 +1,5 @@
 output "guid_entities" {
-  description = "GUID value from application_names input list."
+  description = "GUID from application_names input list."
   value = {
     for k, v in data.newrelic_entity.application_entity : k => v.guid
   }
@@ -13,7 +13,7 @@ output "alert_policies_created" {
 }
 
 output "alerts_created" {
-  description = "Alerts created."
+  description = "Description from Alerts created."
   value = [
     {
       for k, v in newrelic_nrql_alert_condition.response_time_alert : k => v.description
@@ -31,7 +31,7 @@ output "alerts_created" {
 }
 
 output "dashboards_created" {
-  description = "Dashboards Created"
+  description = "GUID from Dashboards created"
   value = {
     for k, v in newrelic_one_dashboard.fgs_dashboard : k => v.guid
   }
