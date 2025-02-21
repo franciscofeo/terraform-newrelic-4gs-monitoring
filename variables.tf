@@ -20,13 +20,13 @@ variable "newrelic_app_names" {
 }
 
 variable "newrelic_dashboard_refresh_rate" {
-  type = number
+  type        = number
   description = "This attribute determines the frequency for data refresh specified in milliseconds. See official New Relic Provider documentation to list all available values (Default: 60s)."
-  default = 60000
+  default     = 60000
 }
 
 variable "newrelic_dashboard_permissions" {
-  type = string
+  type        = string
   description = "Determines who can see the dashboard in an account (Default: public_read_write)."
-  default = "public_read_write"
+  default     = "public_read_write"
 }
