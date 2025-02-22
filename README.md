@@ -1,3 +1,42 @@
+# Terraform New Relic 4 Golden Signals
+
+This module handles New Relic 4 Golden Signals alerts and dashboard creation and configuration.
+
+## Compatability
+
+This module is meant for use with Terraform 1.0+ and tested using Terraform 1.3+.
+If you find incompatibilities using Terraform `>=1.0`, please open an issue.
+
+## Usage
+
+A simple usage is as follows:
+
+```hcl
+// This is the only configuration required
+
+locals {
+  newrelic_app_names = ["my-service-1", "my-service-2"]
+}
+
+module "4gs-monitoring" {
+  source  = "franciscofeo/4gs-monitoring/newrelic"
+  
+  newrelic_app_names  = local.newrelic_app_names
+  newrelic_account_id = var.newrelic_account_id
+  newrelic_api_key    = var.newrelic_api_key
+}
+```
+
+It's highly recommended to not set the `account_it` and `api_key` hard coded, to avoid security issues. Usually we can export these
+variables, create a `.tfvars` file or send them while performing terraform commands.
+
+To build your New Relic infrastructure just perform the following commands on the root folder:
+
+- `terraform init` to get the plugins
+- `terraform plan -var="newrelic_account_id={ACCOUNT_ID}" -var="newrelic_api_key={API_KEY}"` to see the infrastructure plan
+- `terraform apply -var="newrelic_account_id={ACCOUNT_ID}" -var="newrelic_api_key={API_KEY}"` to apply the infrastructure build
+- `terraform destroy -var="newrelic_account_id={ACCOUNT_ID}" -var="newrelic_api_key={API_KEY}"` to destroy the built infrastructure
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -43,7 +82,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_alert_policies_created"></a> [alert\_policies\_created](#output\_alert\_policies\_created) | Alert policies from created alerts. |
+| <a name="output_alert_policies_created"></a> [alert\_policies\_created](#output\_alert\_policies\_created) | Alert Policies from created Alerts. |
 | <a name="output_alerts_created"></a> [alerts\_created](#output\_alerts\_created) | Description from Alerts created. |
 | <a name="output_dashboards_created"></a> [dashboards\_created](#output\_dashboards\_created) | GUID from Dashboards created |
 | <a name="output_guid_entities"></a> [guid\_entities](#output\_guid\_entities) | GUID from application\_names input list. |
