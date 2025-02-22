@@ -13,7 +13,7 @@ output "alert_policies_created" {
 }
 
 output "alerts_created" {
-  description = "Description from Alerts created."
+  description = "Description from created Alerts."
   value = [
     {
       for k, v in newrelic_nrql_alert_condition.response_time_alert : k => v.description
@@ -31,8 +31,13 @@ output "alerts_created" {
 }
 
 output "dashboards_created" {
-  description = "GUID from Dashboards created"
+  description = "GUID from created Dashboards"
   value = {
     for k, v in newrelic_one_dashboard.fgs_dashboard : k => v.guid
   }
+}
+
+output "workload_created" {
+  description = "GUID from created Workload."
+  value       = [for workload in newrelic_workload.workloads : workload.guid]
 }

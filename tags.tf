@@ -8,3 +8,14 @@ resource "newrelic_entity_tags" "dashboard_tags" {
     values = ["terraform"]
   }
 }
+
+resource "newrelic_entity_tags" "workload_tag" {
+  for_each = { for idx, w in newrelic_workload.workloads : idx => w }
+
+  guid = each.value.guid
+
+  tag {
+    key    = "origin"
+    values = ["terraform"]
+  }
+}
