@@ -6,7 +6,7 @@ output "guid_entities" {
 }
 
 output "alert_policies_created" {
-  description = "Alert policies from created alerts."
+  description = "Alert Policies from created Alerts."
   value = {
     for k, v in newrelic_alert_policy.golden_signal_policy : k => v
   }
