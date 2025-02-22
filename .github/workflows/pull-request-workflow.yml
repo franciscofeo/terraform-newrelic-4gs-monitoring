@@ -1,0 +1,35 @@
+name: pull-request-workflow
+on:
+  pull_request:
+    branches:
+     - main
+
+jobs:
+  terraform-fmt-check:
+    if: github.event_name == 'pull_request'
+    defaults:
+      run:
+        working-directory: .
+    name: Terraform
+    environment: production
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2.5.0
+ 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Fmt
+      id: fmt
+      run: terraform fmt
+      working-directory: .
+ 
+    - name: Auto Commit Changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Terraform fmt"
+        file_pattern: "*.tf"
+        commit_user_name: "github-actions[bot]"
