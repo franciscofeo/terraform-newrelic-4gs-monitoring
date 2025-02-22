@@ -25,7 +25,7 @@ jobs:
     - name: Terraform Fmt
       id: fmt
       run: terraform fmt
-      working-directory: ./terraform
+      working-directory: .
  
     - name: Auto Commit Changes
       uses: stefanzweifel/git-auto-commit-action@v5
