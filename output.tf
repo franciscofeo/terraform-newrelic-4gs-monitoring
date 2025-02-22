@@ -39,5 +39,5 @@ output "dashboards_created" {
 
 output "workload_created" {
   description = "GUID from created Workload."
-  value = [for workload in newrelic_workload.workloads : workload.guid]
+  value       = [for workload in newrelic_workload.workloads : workload.guid]
 }

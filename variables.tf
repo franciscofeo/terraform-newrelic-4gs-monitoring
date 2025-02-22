@@ -32,7 +32,7 @@ variable "newrelic_dashboard_permissions" {
 }
 
 variable "newrelic_create_workload" {
-  type = bool
+  type        = bool
   description = "If 'true' a new workload will be created using the dashboards and entities. (Default: false)"
-  default = false
+  default     = false
 }
