@@ -30,3 +30,9 @@ variable "newrelic_dashboard_permissions" {
   description = "Determines who can see the dashboard in an account (Default: public_read_write)."
   default     = "public_read_write"
 }
+
+variable "newrelic_create_workload" {
+  type = bool
+  description = "If 'true' a new workload will be created using the dashboards and entities. (Default: false)"
+  default = false
+}
